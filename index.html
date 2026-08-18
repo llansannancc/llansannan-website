@@ -168,6 +168,44 @@ nav{background:var(--primary);position:sticky;top:0;z-index:100;box-shadow:0 2px
 .doc-table a:hover{text-decoration:underline}
 
 
+
+/* CALENDAR */
+.cal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1rem;margin:1.25rem 0}
+.cal-event{background:var(--white);border:1px solid var(--border);border-radius:4px;overflow:hidden;display:flex}
+.cal-date-col{background:var(--primary);color:#fff;padding:0.9rem 1rem;min-width:70px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;flex-shrink:0}
+.cal-day{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;line-height:1}
+.cal-mon{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;opacity:0.8;margin-top:0.2rem}
+.cal-body{padding:0.85rem 1rem;flex:1}
+.cal-title{font-weight:600;font-size:0.88rem;color:var(--primary);margin-bottom:0.25rem}
+.cal-detail{font-size:0.78rem;color:var(--muted);line-height:1.5}
+.cal-tag{display:inline-block;margin-top:0.4rem;padding:0.15rem 0.5rem;background:var(--cream);border:1px solid var(--border);border-radius:2px;font-size:0.68rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:0.05em}
+.cal-tag.council{background:#e8eef5;border-color:#b8cce0;color:var(--primary)}
+.cal-tag.community{background:#e8f5e9;border-color:#a5d6a7;color:#2d6a4f}
+.cal-tag.culture{background:#fff3e0;border-color:#ffcc80;color:#8b5000}
+.cal-notice{background:var(--white);border:1px solid var(--border);border-radius:4px;padding:1rem 1.25rem;margin-bottom:1.5rem;font-size:0.85rem;color:var(--muted)}
+.cal-notice strong{color:var(--primary)}
+
+/* GRANTS */
+.grants-intro{font-size:0.9rem;color:var(--muted);line-height:1.8;max-width:720px;margin-bottom:1.5rem}
+.grant-card{background:var(--white);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:1.25rem}
+.grant-head{background:var(--primary);color:#fff;padding:0.85rem 1.25rem;display:flex;justify-content:space-between;align-items:center}
+.grant-head-title{font-family:'Playfair Display',serif;font-size:1rem}
+.grant-head-amount{font-size:0.78rem;background:rgba(255,255,255,0.15);padding:0.25rem 0.75rem;border-radius:2px;font-weight:600}
+.grant-body{padding:1.1rem 1.25rem}
+.grant-body p{font-size:0.85rem;color:var(--muted);line-height:1.7;margin-bottom:0.75rem}
+.grant-criteria{list-style:none;margin-bottom:0.75rem}
+.grant-criteria li{font-size:0.83rem;color:var(--muted);padding:0.25rem 0 0.25rem 1.25rem;position:relative;border-bottom:1px solid var(--cream-dark)}
+.grant-criteria li:last-child{border-bottom:none}
+.grant-criteria li::before{content:'✓';position:absolute;left:0;color:var(--accent);font-weight:700}
+
+/* POLICY PAGES */
+.policy-body{max-width:720px}
+.policy-body h3{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--primary);margin:1.5rem 0 0.5rem}
+.policy-body p{font-size:0.88rem;color:var(--muted);line-height:1.85;margin-bottom:0.75rem}
+.policy-body ul{list-style:disc;padding-left:1.5rem;margin-bottom:0.75rem}
+.policy-body ul li{font-size:0.88rem;color:var(--muted);line-height:1.75;margin-bottom:0.2rem}
+.policy-body .policy-updated{font-size:0.75rem;color:var(--border);border-top:1px solid var(--border);padding-top:0.75rem;margin-top:2rem}
+
 /* WARD MAP */
 .ward-section{margin:2rem 0}
 .ward-map-embed{width:100%;height:380px;border:1px solid var(--border);border-radius:4px;margin:1.25rem 0}
@@ -240,6 +278,8 @@ footer a:hover{color:#fff}
   .hero-overlay h1{font-size:1.25rem}
 }
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 </head>
 <body>
 
@@ -277,10 +317,14 @@ footer a:hover{color:#fff}
         <a href="#" onclick="showPage('meetings');return false">Meeting Dates / Dyddiadau</a>
         <a href="#" onclick="showPage('documents');return false">Policies &amp; Documents</a>
         <a href="#" onclick="showPage('ourarea');return false">Our Area / Ein Hardal</a>
+        <a href="#" onclick="showPage('grants');return false">Grants / Grantiau</a>
       </div>
     </div>
     <div class="nav-item">
       <button class="nav-link" data-page="minutes">Minutes / Cofnodion</button>
+    </div>
+    <div class="nav-item">
+      <button class="nav-link" data-page="calendar">Calendar / Calendr</button>
     </div>
     <div class="nav-item">
       <button class="nav-link" data-page="planning">Planning / Cynllunio</button>
@@ -310,7 +354,9 @@ footer a:hover{color:#fff}
     <button class="mob-link mob-sub" onclick="showPage('meetings');toggleMob()">Meeting Dates</button>
     <button class="mob-link mob-sub" onclick="showPage('documents');toggleMob()">Policies &amp; Documents</button>
     <button class="mob-link mob-sub" onclick="showPage('ourarea');toggleMob()">Our Area / Ein Hardal</button>
+    <button class="mob-link mob-sub" onclick="showPage('grants');toggleMob()">Grants / Grantiau</button>
     <button class="mob-link" onclick="showPage('minutes');toggleMob()">Minutes / Cofnodion</button>
+    <button class="mob-link" onclick="showPage('calendar');toggleMob()">Community Calendar / Calendr</button>
     <button class="mob-link" onclick="showPage('planning');toggleMob()">Planning / Cynllunio</button>
     <button class="mob-link" onclick="showPage('local');toggleMob()">Local Info / Lleol</button>
     <button class="mob-link" onclick="showPage('news');toggleMob()">News / Newyddion</button>
@@ -794,12 +840,7 @@ footer a:hover{color:#fff}
   <!-- EMBEDDED MAP -->
   <h3 class="sub-sh">Ward Map / Map Ward</h3>
   <p style="font-size:0.85rem;color:var(--muted);margin-bottom:0.75rem">The map below shows the location of Llansannan in north Wales. Llansannan Community Council serves the area of Bro Aled shown here &mdash; Mae'r map isod yn dangos lleoliad Llansannan yng ngogledd Cymru.</p>
-  <iframe
-    class="ward-map-embed"
-    src="https://www.openstreetmap.org/export/embed.html?bbox=-3.7617%2C53.1755%2C-3.5617%2C53.2755&amp;layer=mapnik&amp;marker=53.2255%2C-3.6617"
-    title="Map of Llansannan, Bro Aled / Map o Lansannan, Bro Aled"
-    loading="lazy">
-  </iframe>
+  <div id="ward-map-leaflet" class="ward-map-embed" style="z-index:1;background:#e8e4dc"></div>
   <p style="font-size:0.72rem;color:var(--muted);margin-bottom:1.5rem">
     Map data &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" style="color:var(--primary)">OpenStreetMap</a> contributors &middot;
     <a href="https://www.openstreetmap.org/?mlat=53.2255&amp;mlon=-3.6617#map=12/53.2255/-3.6617" target="_blank" style="color:var(--primary)">View larger map</a>
@@ -864,6 +905,262 @@ footer a:hover{color:#fff}
   </div>
 </div>
 
+
+<!-- ═══════════════ COMMUNITY CALENDAR ═══════════════ -->
+<div class="page" id="calendar">
+  <h2 class="sh">Community Calendar
+    <span class="cy">Calendr Cymunedol</span>
+  </h2>
+  <hr class="sh-rule">
+
+  <div class="cal-notice">
+    <strong>Submit an event:</strong> Community organisations and groups can have events listed here free of charge. Email <a href="mailto:clerk@llansannan-cc.gov.wales" style="color:var(--primary)">clerk@llansannan-cc.gov.wales</a> with the event name, date, time and venue &middot; <em>Cysylltwch â'r clerc i ychwanegu digwyddiad at y calendr</em>
+  </div>
+
+  <h3 class="sub-sh">Autumn / Hydref 2026</h3>
+  <div class="cal-grid">
+    <div class="cal-event">
+      <div class="cal-date-col"><div class="cal-day">19</div><div class="cal-mon">Sep</div></div>
+      <div class="cal-body">
+        <div class="cal-title">Community Council Meeting / Cyfarfod y Cyngor Cymuned</div>
+        <div class="cal-detail">7:30pm &middot; Canolfan Addysg Bro Aled, Llansannan<br>Public welcome — participation period at start of meeting</div>
+        <span class="cal-tag council">Council / Cyngor</span>
+      </div>
+    </div>
+    <div class="cal-event">
+      <div class="cal-date-col"><div class="cal-day">14</div><div class="cal-mon">Oct</div></div>
+      <div class="cal-body">
+        <div class="cal-title">Community Council Meeting / Cyfarfod y Cyngor Cymuned</div>
+        <div class="cal-detail">7:30pm &middot; Canolfan Addysg Bro Aled, Llansannan<br>Agenda available 3 days before meeting</div>
+        <span class="cal-tag council">Council / Cyngor</span>
+      </div>
+    </div>
+    <div class="cal-event">
+      <div class="cal-date-col"><div class="cal-day">9</div><div class="cal-mon">Nov</div></div>
+      <div class="cal-body">
+        <div class="cal-title">Remembrance Sunday / Sul y Cofio</div>
+        <div class="cal-detail">War Memorial, Llansannan &middot; 10:45am<br>Parade and wreath-laying ceremony — all welcome</div>
+        <span class="cal-tag community">Community / Cymunedol</span>
+      </div>
+    </div>
+    <div class="cal-event">
+      <div class="cal-date-col"><div class="cal-day">11</div><div class="cal-mon">Nov</div></div>
+      <div class="cal-body">
+        <div class="cal-title">Community Council Meeting / Cyfarfod y Cyngor Cymuned</div>
+        <div class="cal-detail">7:30pm &middot; Canolfan Addysg Bro Aled, Llansannan</div>
+        <span class="cal-tag council">Council / Cyngor</span>
+      </div>
+    </div>
+    <div class="cal-event">
+      <div class="cal-date-col"><div class="cal-day">9</div><div class="cal-mon">Dec</div></div>
+      <div class="cal-body">
+        <div class="cal-title">Community Council Meeting / Cyfarfod y Cyngor Cymuned</div>
+        <div class="cal-detail">7:30pm &middot; Canolfan Addysg Bro Aled, Llansannan</div>
+        <span class="cal-tag council">Council / Cyngor</span>
+      </div>
+    </div>
+    <div class="cal-event">
+      <div class="cal-date-col" style="background:var(--accent)"><div class="cal-day">TBC</div><div class="cal-mon">Dec</div></div>
+      <div class="cal-body">
+        <div class="cal-title">Côr Meibion Bro Aled — Christmas Concert / Cyngerdd Nadolig</div>
+        <div class="cal-detail">Venue TBC &middot; Tickets available from choir members<br>Annual Christmas concert — date to be confirmed</div>
+        <span class="cal-tag culture">Culture / Diwylliant</span>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="sub-sh">Annual Events / Digwyddiadau Blynyddol</h3>
+  <div class="info-grid" style="margin-top:0.75rem">
+    <div class="info-block">
+      <h3>Regular Events / Digwyddiadau Rheolaidd</h3>
+      <ul>
+        <li><strong>Community Council</strong> — Monthly except August, 7:30pm</li>
+        <li><strong>Eisteddfod Bro Aled</strong> — Annual cultural festival</li>
+        <li><strong>YFC Show / Sioe Ffermwyr Ifanc</strong> — Annual agricultural show</li>
+        <li><strong>Remembrance Sunday / Sul y Cofio</strong> — November</li>
+        <li><strong>Côr Meibion</strong> — Concerts throughout the year</li>
+        <li><strong>Clwb Bowlio / Bowls Club</strong> — Season April–September</li>
+      </ul>
+    </div>
+    <div class="info-block">
+      <h3>Submit an Event / Cyflwyno Digwyddiad</h3>
+      <ul>
+        <li>Events must be open to Bro Aled residents</li>
+        <li>Free listing for community &amp; non-profit events</li>
+        <li>Please provide: name, date, time, venue, contact</li>
+        <li>Email: clerk@llansannan-cc.gov.wales</li>
+        <li>Allow 5 working days for publication</li>
+        <li>Commercial events considered on a case-by-case basis</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ GRANTS ═══════════════ -->
+<div class="page" id="grants">
+  <h2 class="sh">Grants to Local Organisations
+    <span class="cy">Grantiau i Fudiadau Lleol</span>
+  </h2>
+  <hr class="sh-rule">
+
+  <p class="grants-intro">Llansannan Community Council awards grants each year to local organisations, groups, and clubs that benefit the residents of Bro Aled. Applications are invited from voluntary, community, and not-for-profit organisations based in or serving the Llansannan community area.</p>
+
+  <div class="notice" style="margin-bottom:1.5rem">
+    Applications for 2025/26 grants are now open. The deadline for applications is <strong>31 January 2026</strong>. Contact the clerk for an application form &middot; Mae ceisiadau am grantiau 2025/26 ar agor nawr. Y dyddiad cau yw 31 Ionawr 2026.
+  </div>
+
+  <div class="grant-card">
+    <div class="grant-head">
+      <div class="grant-head-title">Community Grants Scheme / Cynllun Grantiau Cymunedol</div>
+      <div class="grant-head-amount">Up to £500 per organisation</div>
+    </div>
+    <div class="grant-body">
+      <p>The council's main grant scheme supports local organisations delivering activities and services that benefit the Bro Aled community. Grants are awarded at the discretion of the full council and are subject to budget availability.</p>
+      <p><strong>Who can apply?</strong></p>
+      <ul class="grant-criteria">
+        <li>Voluntary and community organisations based in or serving Llansannan community area</li>
+        <li>Registered charities, CIOs, and unincorporated community groups</li>
+        <li>Sports clubs and cultural organisations</li>
+        <li>Youth organisations serving young people in Bro Aled</li>
+        <li>Organisations must be not-for-profit</li>
+      </ul>
+      <p><strong>What can grants be used for?</strong></p>
+      <ul class="grant-criteria">
+        <li>Running costs and activities that directly benefit local residents</li>
+        <li>Equipment, materials, and project costs</li>
+        <li>Events and activities open to the community</li>
+        <li>Costs cannot include salaries or repayment of loans</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="grant-card">
+    <div class="grant-head">
+      <div class="grant-head-title">How to Apply / Sut i Wneud Cais</div>
+      <div class="grant-head-amount">Deadline: 31 Jan 2026</div>
+    </div>
+    <div class="grant-body">
+      <p>To apply for a grant, contact the acting clerk to request an application form. Completed forms must be returned before the deadline. The council considers all applications at its February meeting and applicants are notified of the outcome in writing.</p>
+      <div class="info-grid" style="margin-top:0.75rem">
+        <div class="info-block">
+          <h3>Application Process</h3>
+          <ul>
+            <li>1. Request application form from clerk</li>
+            <li>2. Complete and return before deadline</li>
+            <li>3. Council considers at February meeting</li>
+            <li>4. Written notification of outcome</li>
+            <li>5. Grant paid by BACS to organisation's bank account</li>
+            <li>6. Brief report required on use of funds</li>
+          </ul>
+        </div>
+        <div class="info-block">
+          <h3>Contact / Cysylltu</h3>
+          <ul>
+            <li><strong>Acting Clerk:</strong> Tammi Owen</li>
+            <li><strong>Email:</strong> clerk@llansannan-cc.gov.wales</li>
+            <li><strong>Address:</strong> Canolfan Addysg Bro Aled, Llansannan</li>
+            <li>Previous grant recipients are welcome to reapply</li>
+            <li>All decisions are made at a public meeting</li>
+            <li>Grant records are published in monthly minutes</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ ACCESSIBILITY ═══════════════ -->
+<div class="page" id="accessibility">
+  <h2 class="sh">Accessibility Statement
+    <span class="cy">Datganiad Hygyrchedd</span>
+  </h2>
+  <hr class="sh-rule">
+  <div class="policy-body">
+    <p>Llansannan Community Council is committed to making its website accessible, in accordance with the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018.</p>
+    <p>This accessibility statement applies to <strong>llansannan-cc.gov.wales</strong> and <strong>cc-llansannan.llyw.cymru</strong>.</p>
+
+    <h3>How accessible this website is</h3>
+    <p>We know some parts of this website are not fully accessible. We are working to improve accessibility. The main areas we are aware of are listed below.</p>
+    <ul>
+      <li>PDF documents linked from this site may not be fully accessible to screen reader software</li>
+      <li>Some older documents in the archive may not have been optimised for accessibility</li>
+    </ul>
+
+    <h3>Feedback and contact information</h3>
+    <p>If you need information on this website in a different format — large print, easy read, audio recording, or Braille — contact the clerk:</p>
+    <ul>
+      <li>Email: <a href="mailto:clerk@llansannan-cc.gov.wales" style="color:var(--primary)">clerk@llansannan-cc.gov.wales</a></li>
+      <li>Address: Canolfan Addysg Bro Aled, Llansannan, Conwy</li>
+    </ul>
+    <p>We will consider your request and get back to you within 10 working days.</p>
+
+    <h3>Reporting accessibility problems</h3>
+    <p>We're always looking to improve the accessibility of this website. If you find any problems not listed on this page, or think we're not meeting accessibility requirements, contact the clerk using the details above.</p>
+
+    <h3>Enforcement procedure</h3>
+    <p>The Equality and Human Rights Commission (EHRC) is responsible for enforcing the accessibility regulations. If you're not happy with how we respond to your complaint, <a href="https://www.equalityadvisoryservice.com" target="_blank" style="color:var(--primary)">contact the Equality Advisory and Support Service (EASS)</a>.</p>
+
+    <h3>Technical information</h3>
+    <p>Llansannan Community Council is committed to making its website accessible in accordance with the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018.</p>
+    <p>This website is partially compliant with the <a href="https://www.w3.org/TR/WCAG21/" target="_blank" style="color:var(--primary)">Web Content Accessibility Guidelines version 2.1</a> AA standard, due to the non-compliances listed above.</p>
+
+    <h3>Preparation of this statement</h3>
+    <p>This statement was prepared in August 2026. It was last reviewed in August 2026.</p>
+
+    <div class="policy-updated">Last updated: August 2026</div>
+  </div>
+</div>
+
+<!-- ═══════════════ PRIVACY POLICY ═══════════════ -->
+<div class="page" id="privacy">
+  <h2 class="sh">Privacy Policy
+    <span class="cy">Polisi Preifatrwydd</span>
+  </h2>
+  <hr class="sh-rule">
+  <div class="policy-body">
+    <p>Llansannan Community Council (the "council") is committed to protecting and respecting your privacy. This policy explains when and why we collect personal information, how we use it, the conditions under which we may disclose it to others, and how we keep it secure.</p>
+
+    <h3>Who we are</h3>
+    <p>Llansannan Community Council is the data controller for the personal information we hold. Our registration address is Canolfan Addysg Bro Aled, Llansannan, Conwy.</p>
+
+    <h3>What information we collect</h3>
+    <p>We may collect and hold the following types of personal information:</p>
+    <ul>
+      <li>Name, address, and contact details when you contact the council by email, letter, or in person</li>
+      <li>Planning consultation responses and representations</li>
+      <li>Grant application information</li>
+      <li>Information about you that you provide when attending a public meeting</li>
+      <li>Councillor register of interests (published as required by law)</li>
+    </ul>
+
+    <h3>How we use your information</h3>
+    <p>We use your personal information to carry out our statutory functions as a community council, to respond to enquiries and complaints, and to contact you about council matters where relevant.</p>
+
+    <h3>Legal basis for processing</h3>
+    <p>We process personal data on the basis of our public task as a statutory local authority. In some cases, we may process data with your consent or to comply with a legal obligation.</p>
+
+    <h3>Sharing your information</h3>
+    <p>We do not sell or rent your information to third parties. We may share information with Conwy County Borough Council, the Welsh Government, or other public bodies where required to carry out our functions, or where required by law.</p>
+
+    <h3>How long we keep your information</h3>
+    <p>We keep personal information for no longer than is necessary for the purpose for which it was collected, in accordance with our retention schedule. Council minutes (which may include personal information) are permanent records.</p>
+
+    <h3>Your rights</h3>
+    <p>You have the right to request access to the personal information we hold about you, to request correction of inaccurate information, and in some circumstances to request deletion. To exercise these rights, contact the clerk.</p>
+
+    <h3>Cookies</h3>
+    <p>This website does not use cookies or tracking technologies.</p>
+
+    <h3>Contact us</h3>
+    <p>If you have any questions about this privacy policy or how we handle your personal information, please contact the clerk at <a href="mailto:clerk@llansannan-cc.gov.wales" style="color:var(--primary)">clerk@llansannan-cc.gov.wales</a>.</p>
+
+    <h3>Complaints</h3>
+    <p>If you are not satisfied with our response, you have the right to complain to the Information Commissioner's Office (ICO): <a href="https://ico.org.uk" target="_blank" style="color:var(--primary)">ico.org.uk</a> &mdash; Telephone: 0303 123 1113.</p>
+
+    <div class="policy-updated">Last updated: August 2026</div>
+  </div>
+</div>
+
 </div><!-- end .content -->
 </div><!-- end .site-wrap -->
 
@@ -886,6 +1183,8 @@ footer a:hover{color:#fff}
         <li><a href="#" onclick="showPage('councillors');scrollToTop()">Councillors</a></li>
         <li><a href="#" onclick="showPage('planning');scrollToTop()">Planning</a></li>
         <li><a href="#" onclick="showPage('documents');scrollToTop()">Documents</a></li>
+        <li><a href="#" onclick="showPage('grants');scrollToTop()">Grants / Grantiau</a></li>
+        <li><a href="#" onclick="showPage('calendar');scrollToTop()">Calendar / Calendr</a></li>
         <li><a href="#" onclick="showPage('contact');scrollToTop()">Contact</a></li>
         <li><a href="#" onclick="showPage('ourarea');scrollToTop()">Our Area</a></li>
       </ul>
@@ -900,8 +1199,8 @@ footer a:hover{color:#fff}
   <div class="footer-bar">
     <span>&copy; 2026 Llansannan Community Council / Cyngor Cymuned Llansannan &middot; Bro Aled &middot; Conwy</span>
     <span>
-      <a href="#" onclick="showPage('documents');return false">Privacy Policy</a> &nbsp;|&nbsp;
-      <a href="#" onclick="showPage('documents');return false">Accessibility Statement</a> &nbsp;|&nbsp;
+      <a href="#" onclick="showPage('privacy');scrollToTop();return false">Privacy Policy</a> &nbsp;|&nbsp;
+      <a href="#" onclick="showPage('accessibility');scrollToTop();return false">Accessibility Statement</a> &nbsp;|&nbsp;
       <a href="#" onclick="showPage('documents');return false">Welsh Language Policy</a>
     </span>
   </div>
@@ -915,9 +1214,14 @@ function showPage(id){
   document.querySelectorAll('.nav-link').forEach(l=>{
     l.classList.toggle('active',l.dataset.page===id);
   });
-  // close mobile nav
   document.getElementById('mob-nav').classList.remove('open');
   window.scrollTo({top:0,behavior:'smooth'});
+  if(id==='ourarea'){
+    setTimeout(function(){
+      if(window._wardMap){window._wardMap.invalidateSize();}
+      else{initWardMap();}
+    },50);
+  }
 }
 
 function scrollToTop(){window.scrollTo({top:0,behavior:'smooth'})}
@@ -941,5 +1245,113 @@ document.querySelectorAll('.yr-btn').forEach(btn=>{
   });
 });
 </script>
+
+<script>
+var _wardMap = null;
+
+function initWardMap(){
+  if(!document.getElementById('ward-map-leaflet')) return;
+  if(_wardMap){ _wardMap.invalidateSize(); return; }
+
+  _wardMap = L.map('ward-map-leaflet',{zoomControl:true}).setView([53.235,-3.660],11);
+
+  // OSM tile layer
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+    attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors',
+    maxZoom:17
+  }).addTo(_wardMap);
+
+  // ── Llansannan Community boundary (approximate — based on OS community boundary) ──
+  // Full council area: Llansannan + Bylchau Groes parish
+  var communityCoords = [
+    [53.3065,-3.7180],[53.3020,-3.6780],[53.3045,-3.6380],
+    [53.2975,-3.5880],[53.2700,-3.5420],[53.2430,-3.5410],
+    [53.2180,-3.5700],[53.1960,-3.6230],[53.1880,-3.6920],
+    [53.1980,-3.7530],[53.2230,-3.7820],[53.2580,-3.7760],
+    [53.2820,-3.7540],[53.3000,-3.7420]
+  ];
+
+  var communityLayer = L.polygon(communityCoords,{
+    color:'#3d6e99',
+    weight:3,
+    fillColor:'#3d6e99',
+    fillOpacity:0.13,
+    lineJoin:'round'
+  }).addTo(_wardMap);
+  communityLayer.bindPopup(
+    '<div style="font-family:Open Sans,sans-serif;min-width:180px">' +
+    '<strong style="color:#3d6e99;font-size:0.9rem">Llansannan Community Council</strong><br>' +
+    '<span style="font-size:0.78rem;color:#555">Cyngor Cymuned Llansannan<br>' +
+    'Bro Aled &middot; Conwy</span></div>'
+  );
+
+  // ── Bylchau Groes Parish sub-boundary (northern portion) ──
+  var bylchauCoords = [
+    [53.3065,-3.7180],[53.3020,-3.6780],[53.3045,-3.6380],
+    [53.2975,-3.5880],[53.2700,-3.5420],[53.2540,-3.5600],
+    [53.2460,-3.6050],[53.2420,-3.6550],[53.2490,-3.7060],
+    [53.2650,-3.7380],[53.2820,-3.7540],[53.3000,-3.7420]
+  ];
+
+  L.polygon(bylchauCoords,{
+    color:'#b07420',
+    weight:2,
+    fillColor:'#b07420',
+    fillOpacity:0.10,
+    dashArray:'7,5',
+    lineJoin:'round'
+  }).addTo(_wardMap).bindPopup(
+    '<div style="font-family:Open Sans,sans-serif">' +
+    '<strong style="color:#b07420;font-size:0.9rem">Plwyf y Bylchau Groes</strong><br>' +
+    '<span style="font-size:0.78rem;color:#555">Bylchau Groes Parish</span></div>'
+  );
+
+  // ── Custom marker icon ──
+  var blueIcon = L.divIcon({
+    html:'<div style="background:#3d6e99;width:12px;height:12px;border-radius:50%;border:2.5px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,0.4)"></div>',
+    iconSize:[12,12],iconAnchor:[6,6],popupAnchor:[0,-8],className:''
+  });
+  var goldIcon = L.divIcon({
+    html:'<div style="background:#b07420;width:10px;height:10px;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,0.35)"></div>',
+    iconSize:[10,10],iconAnchor:[5,5],popupAnchor:[0,-7],className:''
+  });
+
+  // ── Key location markers ──
+  L.marker([53.2255,-3.6617],{icon:blueIcon,title:'Llansannan'}).addTo(_wardMap)
+    .bindPopup('<div style="font-family:Open Sans,sans-serif"><strong style="color:#3d6e99">Llansannan</strong>' +
+      '<br><span style="font-size:0.78rem;color:#555">Canolfan Addysg Bro Aled<br>Council meeting venue &middot; Village centre</span></div>');
+
+  L.marker([53.2680,-3.6390],{icon:goldIcon,title:'Bylchau'}).addTo(_wardMap)
+    .bindPopup('<div style="font-family:Open Sans,sans-serif"><strong style="color:#b07420">Bylchau</strong>' +
+      '<br><span style="font-size:0.78rem;color:#555">Plwyf y Bylchau Groes<br>Bylchau Groes Parish area</span></div>');
+
+  L.marker([53.2500,-3.7100],{icon:goldIcon,title:'Groes'}).addTo(_wardMap)
+    .bindPopup('<div style="font-family:Open Sans,sans-serif"><strong style="color:#b07420">Groes</strong>' +
+      '<br><span style="font-size:0.78rem;color:#555">Bro Aled community settlement</span></div>');
+
+  // Legend
+  var legend = L.control({position:'bottomright'});
+  legend.onAdd = function(){
+    var div = L.DomUtil.create('div');
+    div.style.cssText='background:#fff;padding:8px 10px;border-radius:4px;border:1px solid #d4cfc5;font-family:Open Sans,sans-serif;font-size:0.72rem;line-height:1.8;box-shadow:0 1px 5px rgba(0,0,0,0.15)';
+    div.innerHTML=
+      '<div style="font-weight:700;color:#333;margin-bottom:4px">Map Key / Allwedd</div>'+
+      '<div><span style="display:inline-block;width:14px;height:3px;background:#3d6e99;vertical-align:middle;margin-right:5px"></span>Community Council area</div>'+
+      '<div><span style="display:inline-block;width:14px;height:2px;background:#b07420;border-top:2px dashed #b07420;vertical-align:middle;margin-right:5px"></span>Bylchau Groes Parish</div>'+
+      '<div><span style="display:inline-block;width:10px;height:10px;background:#3d6e99;border-radius:50%;vertical-align:middle;margin-right:5px;border:2px solid #fff;box-shadow:0 0 0 1px #3d6e99"></span>Key settlement</div>'+
+      '<div style="color:#999;font-size:0.65rem;margin-top:4px;border-top:1px solid #eee;padding-top:3px">Boundaries are approximate</div>';
+    return div;
+  };
+  legend.addTo(_wardMap);
+}
+
+// Auto-init if ourarea page is already active on load
+document.addEventListener('DOMContentLoaded',function(){
+  if(document.getElementById('ourarea') && document.getElementById('ourarea').classList.contains('active')){
+    setTimeout(initWardMap,100);
+  }
+});
+</script>
+
 </body>
 </html>
