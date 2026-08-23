@@ -1,5 +1,18 @@
 /* ── Llansannan Community Council — main.js ────────────────────────────────── */
 
+/* ── LANGUAGE TOGGLE ────────────────────────────────────────────────────────── */
+(function(){
+  try{var s=localStorage.getItem('lang');if(s==='en')document.documentElement.setAttribute('data-lang','en');}catch(e){}
+})();
+
+function toggleLang(){
+  var html=document.documentElement;
+  var current=html.getAttribute('data-lang')||'cy';
+  var next=current==='cy'?'en':'cy';
+  html.setAttribute('data-lang',next);
+  try{localStorage.setItem('lang',next);}catch(e){}
+}
+
 /* Mobile nav toggle */
 (function(){
   var btn = document.getElementById('hamburger');
