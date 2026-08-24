@@ -299,3 +299,32 @@ footer{background:var(--primary-dark);color:rgba(255,255,255,0.8);padding:2.5rem
   .welcome-section{grid-template-columns:1fr!important}
   .welcome-section>div:last-child{display:none}
 }
+
+/* ── FINAL POLISH ───────────────────────────────────────────────────────────── */
+/* Taller hero, lighter overlay so village shows clearly */
+.hero{height:520px}
+.hero-overlay{background:linear-gradient(to bottom,rgba(10,22,40,0.12) 0%,rgba(10,22,40,0.45) 60%,rgba(10,22,40,0.62) 100%)}
+
+/* Zero hover state on action panels — shadow only, nothing else changes */
+.home-action:hover{
+  background:var(--white)!important;
+  border-color:var(--border)!important;
+  color:var(--text)!important;
+  transform:none!important;
+  box-shadow:0 4px 12px rgba(43,79,114,0.11)!important
+}
+.home-action:hover .ha-btn{
+  background:transparent!important;
+  color:var(--primary)!important;
+  border-color:var(--primary)!important
+}
+
+/* Quick-access button text — larger, darker, clearly readable */
+.qcard-btn{
+  color:var(--primary-dark)!important;
+  font-size:0.83rem!important;
+  font-weight:700!important;
+  text-decoration:underline;
+  text-underline-offset:2px
+}
+.qcard-btn:hover{color:var(--accent)!important;text-decoration:underline}
