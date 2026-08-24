@@ -328,3 +328,31 @@ footer{background:var(--primary-dark);color:rgba(255,255,255,0.8);padding:2.5rem
   text-underline-offset:2px
 }
 .qcard-btn:hover{color:var(--accent)!important;text-decoration:underline}
+
+/* ── HOME ACTION — border turns blue on hover, no shadow ───────────────────── */
+.home-action:hover{
+  box-shadow:none!important;
+  border-color:var(--primary)!important;
+  background:var(--white)!important;
+  color:var(--text)!important;
+  transform:none!important
+}
+
+/* ── QCARD BUTTON — proper filled button, white text ───────────────────────── */
+.qcard-btn{
+  display:inline-block!important;
+  background:var(--primary)!important;
+  color:#fff!important;
+  padding:0.38rem 1rem!important;
+  border-radius:3px!important;
+  font-size:0.78rem!important;
+  font-weight:600!important;
+  text-decoration:none!important;
+  letter-spacing:0.03em!important;
+  margin-top:0.5rem!important;
+  transition:background 0.15s!important
+}
+.qcard-btn:hover{
+  background:var(--primary-dark)!important;
+  color:#fff!important
+}
