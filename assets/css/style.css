@@ -356,3 +356,16 @@ footer{background:var(--primary-dark);color:rgba(255,255,255,0.8);padding:2.5rem
   background:var(--primary-dark)!important;
   color:#fff!important
 }
+
+/* ── QUICK ACCESS UNIFIED SECTION ───────────────────────────────────────────── */
+.quick-access-wrap{background:linear-gradient(135deg,#f0ede8 0%,#e8e4de 100%);padding:2rem;margin:0 -2rem;border-top:1px solid var(--border)}
+.qa-title{font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--primary-dark);margin-bottom:1.25rem;font-weight:700}
+/* Override grid to auto-fill for 7 panels */
+.quick-access-wrap .home-actions{
+  grid-template-columns:repeat(auto-fill,minmax(210px,1fr))!important;
+  margin:0!important
+}
+@media(max-width:680px){
+  .quick-access-wrap{margin:0 -1rem;padding:1.5rem 1rem}
+  .quick-access-wrap .home-actions{grid-template-columns:1fr!important}
+}
