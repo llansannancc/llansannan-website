@@ -281,3 +281,21 @@ footer{background:var(--primary-dark);color:rgba(255,255,255,0.8);padding:2.5rem
   .home-actions{grid-template-columns:1fr}
   .quick-cards-section{margin:0 -1rem;padding:1.5rem 1rem}
 }
+
+/* ── HOME PAGE REFINEMENTS ──────────────────────────────────────────────────── */
+/* Subtle panel hover — no colour flip, just a gentle lift */
+.home-action:hover{box-shadow:0 4px 14px rgba(43,79,114,0.12);transform:none;color:var(--text)}
+.home-action:hover .ha-btn{background:transparent;color:var(--primary);border-color:var(--primary-light)}
+
+/* Quick-access card links — primary blue, not orange */
+.qcard-btn{color:var(--primary)}
+.qcard-btn:hover{color:var(--primary-dark)}
+
+/* Quick-cards section flush to footer — no white gap */
+.quick-cards-section{margin-bottom:0}
+
+/* Welcome section responsive */
+@media(max-width:680px){
+  .welcome-section{grid-template-columns:1fr!important}
+  .welcome-section>div:last-child{display:none}
+}
