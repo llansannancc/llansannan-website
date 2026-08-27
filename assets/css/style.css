@@ -302,10 +302,10 @@ footer{background:var(--primary-dark);color:rgba(255,255,255,0.8);padding:2.5rem
 
 /* ── FINAL POLISH ───────────────────────────────────────────────────────────── */
 /* Option 2: aerial village photo, statue circle top-centre, frosted title bar at bottom */
-.hero{height:520px;background:url('/assets/img/village-aerial.jpg') center 38%/cover no-repeat;flex-direction:column;justify-content:flex-end;align-items:stretch}
+.hero{height:520px;background:url('/assets/img/village-aerial.jpg') center 73%/cover no-repeat;flex-direction:column;justify-content:flex-end;align-items:stretch}
 .hero-overlay{background:rgba(10,22,40,0.08)}
 .hero-emblem-wrap{position:absolute;top:28px;left:50%;transform:translateX(-50%);z-index:3}
-.hero-emblem{width:164px;height:164px;border-radius:50%;border:5px solid #fff;box-shadow:0 6px 24px rgba(0,0,0,0.30);object-fit:cover;object-position:center 30%;background:#f5f0e8;display:block}
+.hero-emblem{width:164px;height:164px;border-radius:50%;border:5px solid #fff;box-shadow:0 6px 24px rgba(0,0,0,0.30);object-fit:contain;object-position:center center;background:#ede8df;display:block;image-rendering:auto}
 .hero-frosted-bar{width:100%;background:rgba(10,22,40,0.84);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:1.2rem 2rem 1.5rem;z-index:3;text-align:center;box-sizing:border-box}
 .hero-frosted-bar .hero-title{font-size:2rem;text-shadow:none;position:static;margin:0;line-height:1.2}
 .hero-frosted-bar .hero-btns{margin-top:0.9rem}
