@@ -30,8 +30,8 @@ const siteUrl = config.site.url;
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title><span class="cy-title">{title_cy}</span><span class="en-title">{title_en}</span> — {config.site.name_cy}</title>
-  <meta name="description" content={description_cy}>
+  <title>{title_cy} / {title_en} — {config.site.name_cy}</title>
+  <meta name="description" content={`${description_cy} | ${description_en}`}>
   <link rel="canonical" href={canonical}>
   <link rel="alternate" hreflang="cy" href={canonical}>
   <link rel="alternate" hreflang="en" href={canonical}>
@@ -48,9 +48,6 @@ const siteUrl = config.site.url;
   <meta property="og:locale:alternate" content="en_GB">
 
   <!-- Stylesheets -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600&display=swap">
   <link rel="stylesheet" href="/assets/css/style.css">
 
   <!-- Pagefind search UI -->

@@ -1,0 +1,58 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import config from '../../data/config.json';
+---
+<Layout
+  title_cy="Polisi Preifatrwydd"
+  title_en="Privacy Policy"
+  description_cy="Polisi preifatrwydd Cyngor Cymuned Llansannan"
+  description_en="Privacy policy for Llansannan Community Council">
+
+  <div class="page-banner"><h1><span lang="cy">Polisi Preifatrwydd</span><span lang="en">Privacy Policy</span></h1></div>
+  <div class="breadcrumb"><a href="/"><span lang="cy">Hafan</span><span lang="en">Home</span></a> &rsaquo; <span lang="cy">Polisi Preifatrwydd</span><span lang="en">Privacy Policy</span></div>
+
+  <div class="site-wrap"><div class="content" data-pagefind-body>
+    <h2 class="sh"><span lang="cy">Polisi Preifatrwydd</span><span lang="en">Privacy Policy</span></h2><hr class="sh-rule">
+
+    <p lang="cy"><strong>Diweddarwyd ddiwethaf:</strong> Medi 2026</p>
+    <p lang="en"><strong>Last updated:</strong> September 2026</p>
+
+    <h3 class="sub-sh"><span lang="cy">Pwy ydym ni</span><span lang="en">Who we are</span></h3>
+    <p lang="cy">Cyngor Cymuned Llansannan yw'r rheolwr data ar gyfer y wefan hon. Gallwch gysylltu â ni drwy e-bost: <a href={`mailto:${config.council.email}`}>{config.council.email}</a></p>
+    <p lang="en">Llansannan Community Council is the data controller for this website. You can contact us by email: <a href={`mailto:${config.council.email}`}>{config.council.email}</a></p>
+
+    <h3 class="sub-sh"><span lang="cy">Pa ddata rydym yn ei gasglu</span><span lang="en">What data we collect</span></h3>
+    <p lang="cy">Rydym yn casglu'r wybodaeth ganlynol yn unig:</p>
+    <p lang="en">We only collect the following information:</p>
+    <ul lang="cy">
+      <li>Eich enw a'ch cyfeiriad e-bost os byddwch yn cyflwyno'r ffurflen gyswllt</li>
+      <li>Data cyfun, dienw am ymwelwyr (trwy Cloudflare Analytics — nid yw'n defnyddio cwcis)</li>
+    </ul>
+    <ul lang="en">
+      <li>Your name and email address if you submit the contact form</li>
+      <li>Aggregated, anonymous visitor data (via Cloudflare Analytics — no cookies used)</li>
+    </ul>
+
+    <h3 class="sub-sh"><span lang="cy">Pam rydym yn casglu data</span><span lang="en">Why we collect data</span></h3>
+    <p lang="cy">Rydym yn prosesu eich data personol er mwyn ymateb i'ch ymholiad (sail gyfreithiol: buddiant cyhoeddus). Nid ydym yn rhannu eich data â thrydydd partïon ac eithrio Formspree (darpariaeth ffurflen gyswllt) sy'n cydymffurfio â GDPR.</p>
+    <p lang="en">We process your personal data in order to respond to your enquiry (legal basis: public task). We do not share your data with third parties except Formspree (contact form provider) which is GDPR compliant.</p>
+
+    <h3 class="sub-sh"><span lang="cy">Am faint o amser</span><span lang="en">How long we keep it</span></h3>
+    <p lang="cy">Cedwir negeseuon e-bost am hyd at 12 mis. Nid ydym yn storio data ffurflenni yn barhaol.</p>
+    <p lang="en">Email messages are kept for up to 12 months. We do not store form data permanently.</p>
+
+    <h3 class="sub-sh"><span lang="cy">Eich hawliau</span><span lang="en">Your rights</span></h3>
+    <p lang="cy">Dan y GDPR mae gennych hawl i weld, cywiro, dileu neu wrthwynebu prosesu eich data personol. Cysylltwch â ni i arfer unrhyw un o'r hawliau hyn. Mae gennych hefyd yr hawl i gwyno wrth yr ICO (<a href="https://ico.org.uk" rel="noopener noreferrer" target="_blank">ico.org.uk</a>).</p>
+    <p lang="en">Under GDPR you have the right to access, rectify, erase or object to the processing of your personal data. Contact us to exercise any of these rights. You also have the right to complain to the ICO (<a href="https://ico.org.uk" rel="noopener noreferrer" target="_blank">ico.org.uk</a>).</p>
+
+    <h3 class="sub-sh"><span lang="cy">Cwcis</span><span lang="en">Cookies</span></h3>
+    <p lang="cy">Nid yw'r wefan hon yn defnyddio cwcis ond eithrio storio eich dewis iaith yn <code>localStorage</code> eich porwr. Nid yw hyn yn trosglwyddo data i weinyddwyr allanol.</p>
+    <p lang="en">This website does not use cookies except to store your language preference in your browser's <code>localStorage</code>. This does not transfer data to external servers.</p>
+
+    <h3 class="sub-sh"><span lang="cy">Diogelwch</span><span lang="en">Security</span></h3>
+    <p lang="cy">Gweithredir HTTPS ar draws yr holl wefan. Caiff penawdau diogelwch eu gosod i amddiffyn ymwelwyr.</p>
+    <p lang="en">HTTPS is enforced across the entire site. Security headers are set to protect visitors.</p>
+
+    <p style="margin-top:2rem"><a href="/contact/" class="btn-primary"><span lang="cy">Cysylltu â ni</span><span lang="en">Contact us</span></a></p>
+  </div></div>
+</Layout>

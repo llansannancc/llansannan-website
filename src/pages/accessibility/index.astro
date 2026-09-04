@@ -1,0 +1,83 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import config from '../../data/config.json';
+---
+<Layout title_cy="Datganiad Hygyrchedd" title_en="Accessibility Statement">
+  <div class="page-banner">
+    <h1><span lang="cy">Datganiad Hygyrchedd</span><span lang="en">Accessibility Statement</span></h1>
+  </div>
+  <div class="breadcrumb">
+    <a href="/"><span lang="cy">Hafan</span><span lang="en">Home</span></a> &rsaquo;
+    <span lang="cy">Hygyrchedd</span><span lang="en">Accessibility</span>
+  </div>
+  <div class="site-wrap"><div class="content">
+
+    <h2 class="sh"><span lang="cy">Datganiad Hygyrchedd</span><span lang="en">Accessibility Statement</span></h2>
+    <hr class="sh-rule">
+
+    <div class="notice">
+      <span lang="cy">Mae'r datganiad hwn yn berthnasol i wefan <strong>{config.site.url}</strong></span>
+      <span lang="en">This statement applies to the website <strong>{config.site.url}</strong></span>
+    </div>
+
+    <!-- ENGLISH VERSION -->
+    <div lang="en">
+      <p>This website is run by {config.site.name_en}. We want as many people as possible to be able to use this website. For example, that means you should be able to:</p>
+      <ul style="margin:0.5rem 0 1rem 1.5rem;line-height:2">
+        <li>Change colours, contrast levels and fonts using browser or device settings</li>
+        <li>Zoom in up to 400% without the text spilling off the screen</li>
+        <li>Navigate most of the website using a keyboard or speech recognition software</li>
+        <li>Listen to most of the website using a screen reader</li>
+      </ul>
+
+      <h3 class="sub-sh">How accessible this website is</h3>
+      <p>We know some parts of this website are not fully accessible. We are working towards full compliance with the <a href="https://www.w3.org/TR/WCAG22/" target="_blank" rel="noopener">Web Content Accessibility Guidelines (WCAG) version 2.2 AA standard</a>.</p>
+      <p>Current status: <span class="a11y-status partial">Partially conformant</span></p>
+
+      <h3 class="sub-sh">Known accessibility issues</h3>
+      <ul style="margin:0.5rem 0 1rem 1.5rem;line-height:2">
+        <li>Some PDF documents may not be fully accessible — we are working to provide accessible versions</li>
+        <li>Some older documents may not have Welsh language versions</li>
+      </ul>
+
+      <h3 class="sub-sh">Feedback and contact information</h3>
+      <p>If you need information on this website in a different format, such as accessible PDF, large print, easy read, audio recording or braille, contact:</p>
+      <p><strong>{config.council.clerk_name}</strong>, {config.site.name_en}<br>
+      Email: <a href={`mailto:${config.council.email}`}>{config.council.email}</a></p>
+      <p>We will consider your request and get back to you within 5 working days.</p>
+
+      <h3 class="sub-sh">Reporting accessibility problems</h3>
+      <p>We are always looking to improve the accessibility of this website. If you find any problems not listed on this page or think we are not meeting accessibility requirements, contact us at <a href={`mailto:${config.council.email}`}>{config.council.email}</a>.</p>
+
+      <h3 class="sub-sh">Enforcement procedure</h3>
+      <p>The Equality and Human Rights Commission (EHRC) is responsible for enforcing the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018 (the 'accessibility regulations'). If you're not happy with how we respond to your complaint, <a href="https://www.equalityadvisoryservice.com/" target="_blank" rel="noopener">contact the Equality Advisory and Support Service (EASS)</a>.</p>
+
+      <h3 class="sub-sh">Technical information</h3>
+      <p>{config.site.name_en} is committed to making its website accessible, in accordance with the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018.</p>
+
+      <h3 class="sub-sh">Compliance status</h3>
+      <p>This website is partially conformant with the Web Content Accessibility Guidelines version 2.2 AA standard, due to the non-compliances listed above.</p>
+
+      <h3 class="sub-sh">Preparation of this accessibility statement</h3>
+      <p>This statement was prepared in September 2026. It was last reviewed in September 2026. This website was tested in September 2026 against WCAG 2.2 AA criteria.</p>
+    </div>
+
+    <hr style="margin:2rem 0;border-color:var(--border)">
+
+    <!-- WELSH VERSION -->
+    <div lang="cy">
+      <h3 class="sub-sh">Faint o hygyrchedd sydd ar y wefan hon</h3>
+      <p>Mae {config.site.name_cy} yn ymrwymedig i wneud ei wefan yn hygyrch yn unol â Rheoliadau Hygyrchedd Cyrff y Sector Cyhoeddus (Gwefannau a Chymwysiadau Symudol) (Rhif 2) 2018.</p>
+      <p>Mae'r wefan hon yn <span class="a11y-status partial">cydymffurfio'n rhannol</span> â safon WCAG 2.2 AA.</p>
+
+      <h3 class="sub-sh">Adborth a gwybodaeth gyswllt</h3>
+      <p>Os oes angen y wybodaeth ar y wefan hon arnoch mewn fformat gwahanol, megis PDF hygyrch, print bras, hawdd ei ddarllen, recordiad sain neu braille, cysylltwch â:</p>
+      <p><strong>{config.council.clerk_name}</strong>, {config.site.name_cy}<br>
+      E-bost: <a href={`mailto:${config.council.email}`}>{config.council.email}</a></p>
+
+      <h3 class="sub-sh">Gweithdrefn gorfodi</h3>
+      <p>Y Comisiwn Cydraddoldeb a Hawliau Dynol (EHRC) sy'n gyfrifol am orfodi'r rheoliadau hygyrchedd. Os nad ydych yn hapus â sut rydym yn ymateb i'ch cwyn, <a href="https://www.equalityadvisoryservice.com/" target="_blank" rel="noopener">cysylltwch â'r Gwasanaeth Cynghori a Chefnogi Cydraddoldeb (EASS)</a>.</p>
+    </div>
+
+  </div></div>
+</Layout>

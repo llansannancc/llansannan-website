@@ -1,0 +1,66 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import config from '../../data/config.json';
+const { council } = config;
+---
+<Layout title_cy="Cysylltu â Ni" title_en="Contact Us">
+  <div class="page-banner">
+    <h1><span lang="cy">Cysylltu â Ni</span><span lang="en">Contact Us</span></h1>
+  </div>
+  <div class="breadcrumb">
+    <a href="/"><span lang="cy">Hafan</span><span lang="en">Home</span></a> &rsaquo;
+    <span lang="cy">Cyswllt</span><span lang="en">Contact</span>
+  </div>
+  <div class="site-wrap"><div class="content">
+    <h2 class="sh"><span lang="cy">Cysylltu â Chyngor Cymuned Llansannan</span><span lang="en">Contact Llansannan Community Council</span></h2>
+    <hr class="sh-rule">
+
+    <p lang="cy">Y Clerc, <strong>{council.clerk_name}</strong>, yw'r pwynt cyswllt cyntaf ar gyfer yr holl ymholiadau.</p>
+    <p lang="en">The Clerk, <strong>{council.clerk_name}</strong>, is the first point of contact for all enquiries.</p>
+
+    <div class="contact-card" style="margin:1.5rem 0">
+      <div class="ccard-head">{council.clerk_name} — <span lang="cy">{council.clerk_title_cy}</span><span lang="en">{council.clerk_title_en}</span></div>
+      <div class="crow">
+        <span class="clabel"><span lang="cy">E-bost</span><span lang="en">Email</span></span>
+        <span class="cval"><a href={`mailto:${council.email}`}>{council.email}</a></span>
+      </div>
+      <div class="crow">
+        <span class="clabel"><span lang="cy">Cyfeiriad</span><span lang="en">Address</span></span>
+        <span class="cval"><span lang="cy">{council.address_cy}</span><span lang="en">{council.address_en}</span></span>
+      </div>
+    </div>
+
+    <h3 class="sub-sh"><span lang="cy">Ffurflen Gyswllt</span><span lang="en">Contact Form</span></h3>
+    <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" aria-label="Contact form">
+      <div class="cf-row">
+        <div class="cf-field">
+          <label for="name"><span lang="cy">Eich Enw</span><span lang="en">Your Name</span> <span aria-hidden="true">*</span></label>
+          <input type="text" id="name" name="name" required autocomplete="name" aria-required="true">
+        </div>
+        <div class="cf-field">
+          <label for="email"><span lang="cy">E-bost</span><span lang="en">Email Address</span> <span aria-hidden="true">*</span></label>
+          <input type="email" id="email" name="email" required autocomplete="email" aria-required="true">
+        </div>
+      </div>
+      <div class="cf-field">
+        <label for="subject"><span lang="cy">Pwnc</span><span lang="en">Subject</span></label>
+        <input type="text" id="subject" name="subject">
+      </div>
+      <div class="cf-field">
+        <label for="message"><span lang="cy">Eich Neges</span><span lang="en">Your Message</span> <span aria-hidden="true">*</span></label>
+        <textarea id="message" name="message" rows="6" required aria-required="true"></textarea>
+      </div>
+      <p style="font-size:0.78rem;color:var(--muted);margin-bottom:1rem" lang="cy">Mae'n rhaid llenwi meysydd sydd wedi'u marcio â * <span lang="en">Fields marked * are required</span></p>
+      <button type="submit" class="cf-submit">
+        <span lang="cy">Anfon Neges</span>
+        <span lang="en">Send Message</span>
+      </button>
+    </form>
+
+    <div class="notice" style="margin-top:2rem">
+      <strong><span lang="cy">Hysbysiad Preifatrwydd</span><span lang="en">Privacy Notice</span></strong><br>
+      <span lang="cy">Defnyddir eich data yn unig i ymateb i'ch ymholiad. Gweler ein <a href="/privacy/">Polisi Preifatrwydd</a>.</span>
+      <span lang="en">Your data is used only to respond to your enquiry. See our <a href="/privacy/">Privacy Policy</a>.</span>
+    </div>
+  </div></div>
+</Layout>

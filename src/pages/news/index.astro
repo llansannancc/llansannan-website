@@ -1,0 +1,36 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import news from '../../data/news.json';
+---
+<Layout title_cy="Newyddion a Hysbysiadau" title_en="News &amp; Notices">
+  <div class="page-banner">
+    <h1><span lang="cy">Newyddion a Hysbysiadau</span><span lang="en">News &amp; Notices</span></h1>
+  </div>
+  <div class="breadcrumb">
+    <a href="/"><span lang="cy">Hafan</span><span lang="en">Home</span></a> &rsaquo;
+    <span lang="cy">Newyddion</span><span lang="en">News</span>
+  </div>
+  <div class="site-wrap"><div class="content">
+    <h2 class="sh"><span lang="cy">Newyddion a Hysbysiadau</span><span lang="en">News &amp; Notices</span></h2>
+    <hr class="sh-rule">
+
+    {news.items.length === 0 ? (
+      <p lang="cy">Nid oes eitemau newyddion ar hyn o bryd.</p>
+      <p lang="en">There are no news items at this time.</p>
+    ) : (
+      <div class="news-grid">
+        {news.items.map(item => (
+          <article class="news-card" data-pagefind-body>
+            <time datetime={item.date}>{item.date}</time>
+            <h3>
+              <span lang="cy">{item.title_cy}</span>
+              <span lang="en">{item.title_en}</span>
+            </h3>
+            <p lang="cy">{item.body_cy}</p>
+            <p lang="en">{item.body_en}</p>
+          </article>
+        ))}
+      </div>
+    )}
+  </div></div>
+</Layout>

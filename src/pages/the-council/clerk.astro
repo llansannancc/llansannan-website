@@ -1,0 +1,47 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import config from '../../data/config.json';
+const { council } = config;
+---
+<Layout title_cy="Ein Clerc" title_en="Our Clerk">
+  <div class="page-banner">
+    <h1><span lang="cy">Ein Clerc</span><span lang="en">Our Clerk</span></h1>
+  </div>
+  <div class="breadcrumb">
+    <a href="/"><span lang="cy">Hafan</span><span lang="en">Home</span></a> &rsaquo;
+    <a href="/the-council/"><span lang="cy">Y Cyngor</span><span lang="en">The Council</span></a> &rsaquo;
+    <span lang="cy">Ein Clerc</span><span lang="en">Our Clerk</span>
+  </div>
+  <div class="site-wrap"><div class="content">
+    <h2 class="sh"><span lang="cy">Ein Clerc</span><span lang="en">Our Clerk</span></h2>
+    <hr class="sh-rule">
+
+    <p lang="cy">Clerc y cyngor yw <strong>{council.clerk_name}</strong>. Hi yw prif swyddog y cyngor ac mae'n gyfrifol am:</p>
+    <p lang="en">The council's Clerk is <strong>{council.clerk_name}</strong>. As the council's principal officer, the Clerk is responsible for:</p>
+
+    <ul lang="cy" style="margin:0.5rem 0 1rem 1.5rem;line-height:2">
+      <li>Cynghori'r cyngor ar faterion cyfreithiol a gweithdrefnol</li>
+      <li>Paratoi agendâu a chymryd cofnodion</li>
+      <li>Sicrhau cydymffurfiaeth â deddfwriaeth llywodraeth leol</li>
+      <li>Rheoli cyllid a chyfrifon y cyngor</li>
+      <li>Ymateb i ymholiadau'r cyhoedd</li>
+    </ul>
+    <ul lang="en" style="margin:0.5rem 0 1rem 1.5rem;line-height:2">
+      <li>Advising the council on legal and procedural matters</li>
+      <li>Preparing agendas and taking minutes</li>
+      <li>Ensuring compliance with local government legislation</li>
+      <li>Managing the council's finances and accounts</li>
+      <li>Responding to public enquiries</li>
+    </ul>
+
+    <h3 class="sub-sh"><span lang="cy">Cysylltu</span><span lang="en">Contact</span></h3>
+    <div class="contact-card">
+      <div class="ccard-head">{council.clerk_name} — <span lang="cy">{council.clerk_title_cy}</span><span lang="en">{council.clerk_title_en}</span></div>
+      <div class="crow"><span class="clabel"><span lang="cy">E-bost</span><span lang="en">Email</span></span><span class="cval"><a href={`mailto:${council.email}`}>{council.email}</a></span></div>
+      <div class="crow"><span class="clabel"><span lang="cy">Cyfeiriad</span><span lang="en">Address</span></span><span class="cval"><span lang="cy">{council.address_cy}</span><span lang="en">{council.address_en}</span></span></div>
+    </div>
+
+    <p lang="cy" style="margin-top:1rem;font-size:0.85rem">Fel arfer atebir ymholiadau o fewn 5 diwrnod gwaith.</p>
+    <p lang="en" style="margin-top:1rem;font-size:0.85rem">Enquiries are usually responded to within 5 working days.</p>
+  </div></div>
+</Layout>

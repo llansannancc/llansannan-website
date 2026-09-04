@@ -1,0 +1,74 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+<Layout title_cy="Map y Wardiau" title_en="Ward Map">
+  <div class="page-banner"><h1><span lang="cy">Map y Wardiau</span><span lang="en">Ward Map</span></h1></div>
+  <div class="breadcrumb">
+    <a href="/"><span lang="cy">Hafan</span><span lang="en">Home</span></a> &rsaquo;
+    <a href="/councillors/"><span lang="cy">Cynghorwyr</span><span lang="en">Councillors</span></a> &rsaquo;
+    <span lang="cy">Map y Wardiau</span><span lang="en">Ward Map</span>
+  </div>
+  <div class="site-wrap"><div class="content">
+    <h2 class="sh"><span lang="cy">Map Ffiniau Wardiau</span><span lang="en">Ward Boundary Map</span></h2><hr class="sh-rule">
+
+    <p lang="cy">Mae'r map isod yn dangos ffiniau tair ward etholiadol Cyngor Cymuned Llansannan: Ward Llansannan, Ward Bylchau a Ward Llannefydd.</p>
+    <p lang="en">The map below shows the boundaries of Llansannan Community Council's three electoral wards: Llansannan Ward, Bylchau Ward and Llannefydd Ward.</p>
+
+    <!-- Map container -->
+    <div id="ward-map" style="height:480px;border-radius:6px;margin:1.5rem 0;border:1px solid var(--border)" aria-label="Ward boundary map" role="application"></div>
+
+    <p lang="cy" style="font-size:0.875rem;color:var(--text-muted)">Sylwer: Mae'r ffiniau a ddangosir yn fras yn unig. Am fanylion swyddogol, ewch i wefan Cyngor Sir Conwy.</p>
+    <p lang="en" style="font-size:0.875rem;color:var(--text-muted)">Note: The boundaries shown are approximate only. For official details, visit the Conwy County Council website.</p>
+
+    <p>
+      <a href="/councillors/ward-profiles/"><span lang="cy">Proffiliau wardiau →</span><span lang="en">Ward profiles →</span></a>
+      &nbsp;&nbsp;
+      <a href="https://www.conwy.gov.uk/en/Council/Elections-and-Voting/Ward-Boundaries.aspx" rel="noopener noreferrer" target="_blank">
+        <span lang="cy">Ffiniau swyddogol Conwy →</span><span lang="en">Official Conwy boundaries →</span>
+      </a>
+    </p>
+  </div></div>
+</Layout>
+
+<!-- Leaflet.js -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV/XN/WPeE=" crossorigin=""></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Centre on Llansannan area
+    const map = L.map('ward-map').setView([53.195, -3.565], 12);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 17,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // Approximate ward markers (clerk to update with real boundaries)
+    const wards = [
+      { name_cy: 'Ward Llansannan', name_en: 'Llansannan Ward', lat: 53.1985, lng: -3.571 },
+      { name_cy: 'Ward Bylchau', name_en: 'Bylchau Ward', lat: 53.205, lng: -3.545 },
+      { name_cy: 'Ward Llannefydd', name_en: 'Llannefydd Ward', lat: 53.175, lng: -3.540 }
+    ];
+
+    const isCy = () => document.documentElement.getAttribute('data-lang') !== 'en';
+
+    wards.forEach(w => {
+      const marker = L.marker([w.lat, w.lng]).addTo(map);
+      marker.bindPopup(`<strong>${isCy() ? w.name_cy : w.name_en}</strong>`);
+    });
+
+    // Refresh popups on language toggle
+    document.querySelector('.lang-toggle')?.addEventListener('click', () => {
+      map.eachLayer(layer => {
+        if (layer.getPopup) {
+          const popup = layer.getPopup();
+          if (popup) {
+            // Marker tooltips will refresh on next open
+            layer.closePopup();
+          }
+        }
+      });
+    });
+  });
+</script>

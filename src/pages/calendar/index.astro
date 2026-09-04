@@ -1,0 +1,42 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import meetings from '../../data/meetings.json';
+const upcoming = meetings.schedule_2026.filter(m => m.status === 'next' || m.status === 'upcoming');
+---
+<Layout title_cy="Calendr" title_en="Calendar">
+  <div class="page-banner"><h1><span lang="cy">Calendr Cymunedol</span><span lang="en">Community Calendar</span></h1></div>
+  <div class="breadcrumb"><a href="/"><span lang="cy">Hafan</span><span lang="en">Home</span></a> &rsaquo; <span lang="cy">Calendr</span><span lang="en">Calendar</span></div>
+  <div class="site-wrap"><div class="content">
+    <h2 class="sh"><span lang="cy">Calendr</span><span lang="en">Calendar</span></h2><hr class="sh-rule">
+
+    <h3 class="sub-sh"><span lang="cy">Cyfarfodydd y Cyngor Sydd i Ddod</span><span lang="en">Upcoming Council Meetings</span></h3>
+    <div class="cal-list">
+      {upcoming.map(m => {
+        const dateParts = m.date_en.split(', ');
+        const [, dayMonth] = dateParts;
+        const [day, month] = (dayMonth || '').split(' ');
+        return (
+          <div class="cal-item">
+            <div class="cal-date-box">
+              <div class="cal-day">{day}</div>
+              <div class="cal-month">{month?.slice(0,3)}</div>
+            </div>
+            <div>
+              <div class="cal-title">
+                <span lang="cy">{m.type_cy}</span>
+                <span lang="en">{m.type_en}</span>
+                {m.status === 'next' && <strong> — <span lang="cy">Nesaf</span><span lang="en">Next</span></strong>}
+              </div>
+              <div class="cal-detail">
+                <span lang="cy">{m.date_cy}</span>
+                <span lang="en">{m.date_en}</span>
+                {' '} &middot; {m.time}
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+    <p style="margin-top:1rem"><a href="/meetings/"><span lang="cy">Gweld pob dyddiad →</span><span lang="en">View all dates →</span></a></p>
+  </div></div>
+</Layout>

@@ -1,0 +1,60 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import meetings from '../../data/meetings.json';
+import config from '../../data/config.json';
+
+const upcoming = meetings.schedule_2026.filter(m => m.status === 'next' || m.status === 'upcoming');
+const withAgendas = meetings.minutes.filter(m => m.files.agenda_en || m.files.agenda_cy);
+---
+<Layout title_cy="Agendâu" title_en="Agendas">
+  <div class="page-banner">
+    <h1><span lang="cy">Agendâu</span><span lang="en">Agendas</span></h1>
+  </div>
+  <div class="breadcrumb">
+    <a href="/"><span lang="cy">Hafan</span><span lang="en">Home</span></a> &rsaquo;
+    <a href="/meetings/"><span lang="cy">Cyfarfodydd</span><span lang="en">Meetings</span></a> &rsaquo;
+    <span lang="cy">Agendâu</span><span lang="en">Agendas</span>
+  </div>
+  <div class="site-wrap"><div class="content">
+    <h2 class="sh"><span lang="cy">Agendâu Cyfarfodydd</span><span lang="en">Meeting Agendas</span></h2>
+    <hr class="sh-rule">
+
+    <div class="notice">
+      <span lang="cy">Cyhoeddir agendâu o leiaf deuddeng diwrnod cyn pob cyfarfod.</span>
+      <span lang="en">Agendas are published at least three clear days before each meeting.</span>
+    </div>
+
+    {withAgendas.length > 0 ? (
+      <div class="minutes-list">
+        {withAgendas.map(m => (
+          <article class="minutes-item" data-pagefind-body>
+            <h3>
+              <span lang="cy">{m.meeting_type_cy} — {m.meeting_date}</span>
+              <span lang="en">{m.meeting_type_en} — {m.meeting_date}</span>
+            </h3>
+            <ul class="doc-links">
+              {m.files.agenda_en && (
+                <li><a href={m.files.agenda_en} class="doc-link pdf" lang="en">Agenda (English) — PDF</a></li>
+              )}
+              {m.files.agenda_cy && (
+                <li><a href={m.files.agenda_cy} class="doc-link pdf" lang="cy">Agenda (Cymraeg) — PDF</a></li>
+              )}
+            </ul>
+          </article>
+        ))}
+      </div>
+    ) : (
+      <p lang="cy">Nid oes agendâu wedi'u cyhoeddi ar hyn o bryd.</p>
+      <p lang="en">No agendas have been published at this time.</p>
+    )}
+
+    <section class="upload-note">
+      <h3>
+        <span lang="cy">Mynediad at Agendâu</span>
+        <span lang="en">Accessing Agendas</span>
+      </h3>
+      <p lang="cy">Os na allwch gael mynediad at agenda, cysylltwch â'r Clerc: <a href={`mailto:${config.council.email}`}>{config.council.email}</a></p>
+      <p lang="en">If you cannot access an agenda, please contact the Clerk: <a href={`mailto:${config.council.email}`}>{config.council.email}</a></p>
+    </section>
+  </div></div>
+</Layout>

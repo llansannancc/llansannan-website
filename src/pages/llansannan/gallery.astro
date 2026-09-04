@@ -1,0 +1,43 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+<Layout title_cy="Oriel Lluniau" title_en="Photo Gallery">
+  <div class="page-banner"><h1><span lang="cy">Oriel</span><span lang="en">Gallery</span></h1></div>
+  <div class="breadcrumb">
+    <a href="/"><span lang="cy">Hafan</span><span lang="en">Home</span></a> &rsaquo;
+    <a href="/llansannan/">Llansannan</a> &rsaquo;
+    <span lang="cy">Oriel</span><span lang="en">Gallery</span>
+  </div>
+  <div class="site-wrap"><div class="content">
+    <h2 class="sh"><span lang="cy">Lluniau o Llansannan a'r Ardal</span><span lang="en">Photos of Llansannan and the Area</span></h2><hr class="sh-rule">
+
+    <p lang="cy">Mae'r oriel hon yn arddangos harddwch Llansannan a Bro Aled — tirwedd, adeiladau a digwyddiadau cymunedol.</p>
+    <p lang="en">This gallery showcases the beauty of Llansannan and Bro Aled — landscape, buildings and community events.</p>
+
+    <!-- Gallery grid — clerk to add images here -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin:1.5rem 0">
+
+      <!-- Placeholder cards until real photos are added -->
+      <div style="aspect-ratio:4/3;background:var(--section-bg);border:1px dashed var(--border);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.5rem;color:var(--text-muted);font-size:0.875rem">
+        <span style="font-size:2rem">🏔️</span>
+        <span lang="cy">Llun i'w ychwanegu</span>
+        <span lang="en">Photo to be added</span>
+      </div>
+      <div style="aspect-ratio:4/3;background:var(--section-bg);border:1px dashed var(--border);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.5rem;color:var(--text-muted);font-size:0.875rem">
+        <span style="font-size:2rem">⛪</span>
+        <span lang="cy">Llun i'w ychwanegu</span>
+        <span lang="en">Photo to be added</span>
+      </div>
+      <div style="aspect-ratio:4/3;background:var(--section-bg);border:1px dashed var(--border);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.5rem;color:var(--text-muted);font-size:0.875rem">
+        <span style="font-size:2rem">🌿</span>
+        <span lang="cy">Llun i'w ychwanegu</span>
+        <span lang="en">Photo to be added</span>
+      </div>
+    </div>
+
+    <div class="upload-note">
+      <p lang="cy">I gyfrannu lluniau i'r oriel hon, cysylltwch â <a href="/contact/">y Clerc</a>. Dylai lluniau fod yn JPEG neu PNG, hyd at 5MB yr un.</p>
+      <p lang="en">To contribute photos to this gallery, <a href="/contact/">contact the Clerk</a>. Photos should be JPEG or PNG, up to 5MB each.</p>
+    </div>
+  </div></div>
+</Layout>

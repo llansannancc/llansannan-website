@@ -1,0 +1,34 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+<Layout title_cy="Chwilio" title_en="Search">
+  <div class="page-banner">
+    <h1><span lang="cy">Chwilio'r Wefan</span><span lang="en">Search the Website</span></h1>
+  </div>
+  <div class="site-wrap"><div class="content">
+    <div class="search-wrap" id="search-wrap">
+      <p lang="cy">Defnyddiwch y blwch chwilio isod i ddod o hyd i gyfarfodydd, dogfennau a gwybodaeth ar y wefan.</p>
+      <p lang="en">Use the search box below to find meetings, documents and information on the website.</p>
+      <div id="search"></div>
+    </div>
+  </div></div>
+</Layout>
+
+<script>
+  // Pagefind search UI — initialised after page load
+  window.addEventListener('DOMContentLoaded', () => {
+    // @ts-ignore
+    if (typeof PagefindUI !== 'undefined') {
+      // @ts-ignore
+      new PagefindUI({
+        element: '#search',
+        showImages: false,
+        translations: {
+          placeholder: document.documentElement.dataset.lang === 'en'
+            ? 'Search the website...'
+            : 'Chwilio\'r wefan...'
+        }
+      });
+    }
+  });
+</script>
