@@ -1,0 +1,14 @@
+{
+  "items": [
+    {
+      "id": "2026-09-domain",
+      "date": "2026-09-01",
+      "title_cy": "Gwefan newydd ar y ffordd",
+      "title_en": "New website coming soon",
+      "body_cy": "Mae Cyngor Cymuned Llansannan yn datblygu gwefan newydd ar gyfer y gymuned.",
+      "body_en": "Llansannan Community Council is developing a new website for the community.",
+      "featured": true,
+      "expires": null
+    }
+  ]
+}

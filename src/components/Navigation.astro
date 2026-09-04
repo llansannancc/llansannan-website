@@ -1,0 +1,133 @@
+---
+import config from '../data/config.json';
+const { name_cy, name_en } = config.site;
+---
+<nav class="site-nav" aria-label="Prif lywio / Main navigation">
+  <div class="nav-inner">
+
+    <a href="/" class="nav-logo" aria-label={`${name_cy} — ${name_en}`}>
+      <img src="/assets/img/statue-circle.png" alt="" aria-hidden="true" width="40" height="40">
+      <span class="nav-logo-text">
+        <span lang="cy">{name_cy}</span>
+        <span lang="en">{name_en}</span>
+      </span>
+    </a>
+
+    <!-- Desktop nav -->
+    <ul class="nav-links" role="list">
+      <li><a href="/" class="nav-link"><span lang="cy">Hafan</span><span lang="en">Home</span></a></li>
+
+      <li class="nav-item has-dropdown">
+        <a href="/the-council/" class="nav-link">
+          <span lang="cy">Y Cyngor</span><span lang="en">The Council</span>
+          <svg aria-hidden="true" focusable="false" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+        </a>
+        <ul class="dropdown" role="list">
+          <li><a href="/the-council/"><span lang="cy">Am y Cyngor</span><span lang="en">About Us</span></a></li>
+          <li><a href="/the-council/what-we-do/"><span lang="cy">Beth Rydym yn ei Wneud</span><span lang="en">What We Do</span></a></li>
+          <li><a href="/the-council/what-we-spend/"><span lang="cy">Beth Rydym yn ei Wario</span><span lang="en">What We Spend</span></a></li>
+          <li><a href="/the-council/financial-contribution/"><span lang="cy">Eich Cyfraniad</span><span lang="en">Your Contribution</span></a></li>
+          <li><a href="/the-council/annual-return/"><span lang="cy">Ffurflen Flynyddol</span><span lang="en">Annual Return</span></a></li>
+          <li><a href="/the-council/grants/"><span lang="cy">Grantiau a Rhoddion</span><span lang="en">Grants &amp; Donations</span></a></li>
+          <li><a href="/the-council/clerk/"><span lang="cy">Ein Clerc</span><span lang="en">Our Clerk</span></a></li>
+        </ul>
+      </li>
+
+      <li class="nav-item has-dropdown">
+        <a href="/councillors/" class="nav-link">
+          <span lang="cy">Cynghorwyr</span><span lang="en">Councillors</span>
+          <svg aria-hidden="true" focusable="false" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+        </a>
+        <ul class="dropdown" role="list">
+          <li><a href="/councillors/ward-map/"><span lang="cy">Map yr Ward</span><span lang="en">Ward Map</span></a></li>
+          <li><a href="/councillors/ward-profiles/"><span lang="cy">Proffiliau Ward</span><span lang="en">Ward Profiles</span></a></li>
+          <li><a href="/councillors/"><span lang="cy">Eich Cynghorwyr</span><span lang="en">Your Councillors</span></a></li>
+          <li><a href="/councillors/payments/"><span lang="cy">Taliadau Cynghorwyr</span><span lang="en">Councillor Payments</span></a></li>
+          <li><a href="/councillors/interests/"><span lang="cy">Datganiadau Diddordeb</span><span lang="en">Interest Declarations</span></a></li>
+        </ul>
+      </li>
+
+      <li class="nav-item has-dropdown">
+        <a href="/meetings/" class="nav-link">
+          <span lang="cy">Cyfarfodydd</span><span lang="en">Meetings</span>
+          <svg aria-hidden="true" focusable="false" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+        </a>
+        <ul class="dropdown" role="list">
+          <li><a href="/meetings/"><span lang="cy">Dyddiadau</span><span lang="en">Dates</span></a></li>
+          <li><a href="/meetings/agendas/"><span lang="cy">Agendâu</span><span lang="en">Agendas</span></a></li>
+          <li><a href="/meetings/minutes/"><span lang="cy">Cofnodion</span><span lang="en">Minutes</span></a></li>
+        </ul>
+      </li>
+
+      <li><a href="/calendar/" class="nav-link"><span lang="cy">Calendr</span><span lang="en">Calendar</span></a></li>
+
+      <li class="nav-item has-dropdown">
+        <a href="/documents/" class="nav-link">
+          <span lang="cy">Dogfennau</span><span lang="en">Documents</span>
+          <svg aria-hidden="true" focusable="false" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+        </a>
+        <ul class="dropdown" role="list">
+          <li><a href="/documents/"><span lang="cy">Pob Ddogfen</span><span lang="en">All Documents</span></a></li>
+          <li><a href="/documents/standing-orders/"><span lang="cy">Rheolau Sefydlog</span><span lang="en">Standing Orders</span></a></li>
+          <li><a href="/documents/financial-regulations/"><span lang="cy">Rheoliadau Ariannol</span><span lang="en">Financial Regulations</span></a></li>
+          <li><a href="/documents/code-of-conduct/"><span lang="cy">Côd Ymddygiad</span><span lang="en">Code of Conduct</span></a></li>
+          <li><a href="/documents/biodiversity/"><span lang="cy">Bioamrywiaeth</span><span lang="en">Biodiversity</span></a></li>
+        </ul>
+      </li>
+
+      <li class="nav-item has-dropdown">
+        <a href="/llansannan/" class="nav-link">Llansannan
+          <svg aria-hidden="true" focusable="false" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+        </a>
+        <ul class="dropdown" role="list">
+          <li><a href="/llansannan/"><span lang="cy">Am Llansannan</span><span lang="en">About Llansannan</span></a></li>
+          <li><a href="/llansannan/az/">Llansannan A–Z</a></li>
+          <li><a href="/llansannan/business/"><span lang="cy">Busnesau &amp; Grwpiau</span><span lang="en">Businesses &amp; Groups</span></a></li>
+          <li><a href="/llansannan/history/"><span lang="cy">Cipolwg Hanesyddol</span><span lang="en">Historical Glimpses</span></a></li>
+          <li><a href="/llansannan/gallery/"><span lang="cy">Oriel</span><span lang="en">Gallery</span></a></li>
+        </ul>
+      </li>
+
+      <li><a href="/news/" class="nav-link"><span lang="cy">Newyddion</span><span lang="en">News</span></a></li>
+      <li><a href="/contact/" class="nav-link"><span lang="cy">Cyswllt</span><span lang="en">Contact</span></a></li>
+    </ul>
+
+    <a href="/search/" class="nav-search" aria-label="Chwilio / Search">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+    </a>
+
+    <!-- Hamburger (mobile) -->
+    <button class="hamburger" id="hamburger" aria-label="Agor y ddewislen / Open menu" aria-expanded="false" aria-controls="mob-nav">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile nav -->
+  <div class="mob-nav" id="mob-nav" aria-hidden="true">
+    <a href="/"><span lang="cy">Hafan</span><span lang="en">Home</span></a>
+    <div class="mob-section"><span lang="cy">Y Cyngor</span><span lang="en">The Council</span></div>
+    <a href="/the-council/" class="mob-sub"><span lang="cy">Am y Cyngor</span><span lang="en">About Us</span></a>
+    <a href="/the-council/what-we-do/" class="mob-sub"><span lang="cy">Beth Rydym yn ei Wneud</span><span lang="en">What We Do</span></a>
+    <a href="/the-council/clerk/" class="mob-sub"><span lang="cy">Ein Clerc</span><span lang="en">Our Clerk</span></a>
+    <div class="mob-section"><span lang="cy">Cynghorwyr</span><span lang="en">Councillors</span></div>
+    <a href="/councillors/" class="mob-sub"><span lang="cy">Eich Cynghorwyr</span><span lang="en">Your Councillors</span></a>
+    <a href="/councillors/ward-map/" class="mob-sub"><span lang="cy">Map yr Ward</span><span lang="en">Ward Map</span></a>
+    <div class="mob-section"><span lang="cy">Cyfarfodydd</span><span lang="en">Meetings</span></div>
+    <a href="/meetings/" class="mob-sub"><span lang="cy">Dyddiadau</span><span lang="en">Dates</span></a>
+    <a href="/meetings/agendas/" class="mob-sub"><span lang="cy">Agendâu</span><span lang="en">Agendas</span></a>
+    <a href="/meetings/minutes/" class="mob-sub"><span lang="cy">Cofnodion</span><span lang="en">Minutes</span></a>
+    <a href="/calendar/"><span lang="cy">Calendr</span><span lang="en">Calendar</span></a>
+    <div class="mob-section"><span lang="cy">Dogfennau</span><span lang="en">Documents</span></div>
+    <a href="/documents/" class="mob-sub"><span lang="cy">Pob Ddogfen</span><span lang="en">All Documents</span></a>
+    <div class="mob-section">Llansannan</div>
+    <a href="/llansannan/" class="mob-sub"><span lang="cy">Am Llansannan</span><span lang="en">About Llansannan</span></a>
+    <a href="/llansannan/history/" class="mob-sub"><span lang="cy">Hanes</span><span lang="en">History</span></a>
+    <a href="/news/"><span lang="cy">Newyddion</span><span lang="en">News</span></a>
+    <a href="/contact/"><span lang="cy">Cyswllt</span><span lang="en">Contact</span></a>
+    <a href="/search/"><span lang="cy">Chwilio</span><span lang="en">Search</span></a>
+  </div>
+</nav>

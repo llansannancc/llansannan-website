@@ -1,0 +1,64 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import councillors from '../../data/councillors.json';
+---
+<Layout title_cy="Eich Cynghorwyr" title_en="Your Councillors">
+  <div class="page-banner">
+    <h1><span lang="cy">Eich Cynghorwyr</span><span lang="en">Your Councillors</span></h1>
+  </div>
+  <div class="breadcrumb">
+    <a href="/"><span lang="cy">Hafan</span><span lang="en">Home</span></a>
+    &rsaquo; <span lang="cy">Cynghorwyr</span><span lang="en">Councillors</span>
+  </div>
+
+  <div class="site-wrap"><div class="content">
+    <h2 class="sh"><span lang="cy">Eich Cynghorwyr</span><span lang="en">Your Councillors</span></h2>
+    <hr class="sh-rule">
+
+    <div class="notice">
+      <span lang="cy">Aelodau fel y cadarnhawyd yn y cyfarfod diweddaraf. Mae pob aelod wedi'i gyd-optio.</span>
+      <span lang="en">Members as confirmed at the most recent meeting. All members are co-opted.</span>
+    </div>
+
+    {councillors.wards.map(ward => (
+      <section aria-label={ward.name_en}>
+        <p class="ward-label">
+          <span lang="cy">{ward.name_cy}</span>
+          <span lang="en">{ward.name_en}</span>
+        </p>
+        <div class="cllr-grid">
+          {ward.councillors.map(cllr => (
+            cllr.active ? (
+              <div class="cllr-card">
+                <div class="cllr-name">{cllr.name}</div>
+                <div class="cllr-role">
+                  <span lang="cy">{cllr.role_cy}</span>
+                  <span lang="en">{cllr.role_en}</span>
+                </div>
+              </div>
+            ) : (
+              <div class="cllr-card cllr-vacancy">
+                <div class="cllr-name">
+                  <span lang="cy">{cllr.role_cy}</span>
+                  <span lang="en">{cllr.role_en}</span>
+                </div>
+                <div class="cllr-role">
+                  <span lang="cy">Cysylltwch â'r Clerc</span>
+                  <span lang="en">Contact the Clerk</span>
+                </div>
+              </div>
+            )
+          ))}
+        </div>
+      </section>
+    ))}
+  </div></div>
+</Layout>
+
+<style>
+  .cllr-vacancy {
+    background: #fff3cd;
+    border-top-color: #ffc107;
+    color: #856404;
+  }
+</style>

@@ -1,0 +1,95 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import meetings from '../../data/meetings.json';
+import config from '../../data/config.json';
+
+const approved = meetings.minutes.filter(m => m.status === 'approved');
+const chair = config.council.chair_name;
+---
+<Layout title_cy="Cofnodion" title_en="Minutes">
+  <div class="page-banner">
+    <h1><span lang="cy">Cofnodion</span><span lang="en">Minutes</span></h1>
+  </div>
+  <div class="breadcrumb">
+    <a href="/"><span lang="cy">Hafan</span><span lang="en">Home</span></a>
+    &rsaquo; <a href="/meetings/"><span lang="cy">Cyfarfodydd</span><span lang="en">Meetings</span></a>
+    &rsaquo; <span lang="cy">Cofnodion</span><span lang="en">Minutes</span>
+  </div>
+
+  <div class="site-wrap"><div class="content">
+    <h2 class="sh"><span lang="cy">Cofnodion Cyfarfodydd</span><span lang="en">Meeting Minutes</span></h2>
+    <hr class="sh-rule">
+    <p lang="cy">
+      <span lang="cy">Cadeirydd: <strong>{chair}</strong></span>
+      <span lang="en">Chair: <strong>{chair}</strong></span>
+    </p>
+
+    <div class="notice">
+      <span lang="cy">Cyhoeddir cofnodion ar ôl iddynt gael eu cymeradwyo yng nghyfarfod dilynol y cyngor.</span>
+      <span lang="en">Minutes are published after they have been approved at the following council meeting.</span>
+    </div>
+
+    {approved.length === 0 ? (
+      <p lang="cy">Nid oes cofnodion wedi'u cyhoeddi eto.</p>
+      <p lang="en">No minutes have been published yet.</p>
+    ) : (
+      <div class="minutes-list">
+        {approved.map(m => (
+          <article class="minutes-item" data-pagefind-body>
+            <h3>
+              <span lang="cy">{m.meeting_type_cy} — {m.meeting_date}</span>
+              <span lang="en">{m.meeting_type_en} — {m.meeting_date}</span>
+            </h3>
+            <ul class="doc-links">
+              {m.files.minutes_en && (
+                <li>
+                  <a href={m.files.minutes_en} lang="en" class="doc-link pdf">
+                    Approved Minutes (English) — PDF
+                  </a>
+                </li>
+              )}
+              {m.files.minutes_cy && (
+                <li>
+                  <a href={m.files.minutes_cy} lang="cy" class="doc-link pdf">
+                    Cofnodion Cymeradwy (Cymraeg) — PDF
+                  </a>
+                </li>
+              )}
+              {m.files.agenda_en && (
+                <li>
+                  <a href={m.files.agenda_en} lang="en" class="doc-link pdf">
+                    Agenda (English) — PDF
+                  </a>
+                </li>
+              )}
+              {m.files.agenda_cy && (
+                <li>
+                  <a href={m.files.agenda_cy} lang="cy" class="doc-link pdf">
+                    Agenda (Cymraeg) — PDF
+                  </a>
+                </li>
+              )}
+            </ul>
+          </article>
+        ))}
+      </div>
+    )}
+
+    <section class="upload-note" aria-labelledby="upload-heading">
+      <h3 id="upload-heading">
+        <span lang="cy">Mynediad at Gofnodion</span>
+        <span lang="en">Accessing Minutes</span>
+      </h3>
+      <p lang="cy">
+        Os na allwch gael mynediad at ddogfen PDF, cysylltwch â'r Clerc —
+        <a href={`mailto:${config.council.email}`}>{config.council.email}</a> —
+        a byddwn yn darparu'r ddogfen mewn fformat hygyrch.
+      </p>
+      <p lang="en">
+        If you cannot access a PDF document, please contact the Clerk —
+        <a href={`mailto:${config.council.email}`}>{config.council.email}</a> —
+        and we will provide the document in an accessible format.
+      </p>
+    </section>
+  </div></div>
+</Layout>

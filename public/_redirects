@@ -1,0 +1,11 @@
+# Redirect old .html URLs to new clean URLs
+/meetings/minutes.html      /meetings/minutes/      301
+/meetings/agendas.html      /meetings/agendas/      301
+/councillors/index.html     /councillors/           301
+/the-council/index.html     /the-council/           301
+/contact/index.html         /contact/               301
+/news/index.html            /news/                  301
+/planning/index.html        /planning/              301
+
+# 404
+/*  /404/  404

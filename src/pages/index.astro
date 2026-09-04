@@ -1,0 +1,215 @@
+---
+import Layout from '../layouts/Layout.astro';
+import config from '../data/config.json';
+import meetings from '../data/meetings.json';
+import news from '../data/news.json';
+
+const { council, next_meeting, site } = config;
+const nextMeeting = next_meeting;
+const latestNews = news.items.filter(n => n.featured).slice(0, 3);
+const latestMinutes = meetings.minutes[0] ?? null;
+---
+<Layout
+  title_cy="Hafan"
+  title_en="Home"
+  description_cy={`Croeso i wefan swyddogol ${site.name_cy}, ${site.area_cy}`}
+  description_en={`Welcome to the official website of ${site.name_en}, ${site.area_en}`}
+  pageClass="page-home"
+>
+
+  <!-- Hero -->
+  <div class="hero" role="banner">
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="hero-emblem-wrap" aria-hidden="true">
+      <img class="hero-emblem" src="/assets/img/statue-circle.png" alt="">
+    </div>
+    <div class="hero-frosted-bar">
+      <h1 class="hero-title">
+        <span lang="cy">{site.name_cy}</span>
+        <span lang="en">{site.name_en}</span>
+        <br>
+        <small>
+          <span lang="cy">{site.area_cy}</span>
+          <span lang="en">{site.area_en}</span>
+        </small>
+      </h1>
+      <div class="hero-btns">
+        <a href="/meetings/minutes/" class="hero-btn primary">
+          <span lang="cy">Cofnodion Diweddaraf</span>
+          <span lang="en">Latest Minutes</span>
+        </a>
+        <a href="/contact/" class="hero-btn outline">
+          <span lang="cy">Cysylltu â Ni</span>
+          <span lang="en">Contact Us</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Next meeting banner -->
+  <div class="site-wrap">
+    <div class="content" style="padding-bottom:0">
+      <div class="next-meeting" aria-label="Next meeting / Cyfarfod nesaf">
+        <div class="label">
+          <span lang="cy">Cyfarfod Nesaf</span>
+          <span lang="en">Next Meeting</span>
+        </div>
+        <div class="date">
+          <span lang="cy">{nextMeeting.date_cy}</span>
+          <span lang="en">{nextMeeting.date_en}</span>
+        </div>
+        <div class="nm-meta">
+          <span lang="cy">{nextMeeting.time} — {nextMeeting.location_cy}</span>
+          <span lang="en">{nextMeeting.time} — {nextMeeting.location_en}</span>
+        </div>
+        <a href="/meetings/" class="nm-link">
+          <span lang="cy">Gweld yr Agenda →</span>
+          <span lang="en">View Agenda →</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Welcome section -->
+  <div class="site-wrap">
+    <div class="content">
+      <div class="welcome-section">
+        <div class="welcome-text">
+          <h2>
+            <span lang="cy">Croeso i Gyngor Cymuned Llansannan</span>
+            <span lang="en">Welcome to Llansannan Community Council</span>
+          </h2>
+          <p lang="cy">
+            Mae Cyngor Cymuned Llansannan yn wasanaeth gwirfoddol lleol sy'n gwasanaethu ardal Bro Aled yng Nghonwy.
+            Y <strong>{council.chair_title_cy} yw y Cynghorydd {council.chair_name}</strong>.
+            Mae'r Clerc, <strong>{council.clerk_name}</strong>, yn gyswllt cyntaf ar gyfer ymholiadau.
+          </p>
+          <p lang="en">
+            Llansannan Community Council is the first tier of local government serving the Bro Aled area of Conwy.
+            The <strong>{council.chair_title_en} is Councillor {council.chair_name}</strong>.
+            The Clerk, <strong>{council.clerk_name}</strong>, is the first point of contact for enquiries.
+          </p>
+          <p lang="cy">Mae'r cyngor yn cwrdd bob mis ac mae'r cyfarfodydd yn agored i'r cyhoedd.</p>
+          <p lang="en">The council meets monthly and all meetings are open to the public.</p>
+          <a href="/the-council/" class="btn-primary">
+            <span lang="cy">Dysgu Mwy →</span>
+            <span lang="en">Learn More →</span>
+          </a>
+        </div>
+        <div class="welcome-img">
+          <img src="/assets/img/statue.png" alt="Cofeb Llansannan / Llansannan Memorial" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick access grid -->
+  <div class="site-wrap qa-bg">
+    <div class="content">
+      <h2 class="sh">
+        <span lang="cy">Mynediad Cyflym</span>
+        <span lang="en">Quick Access</span>
+      </h2>
+      <hr class="sh-rule">
+      <div class="qa-grid">
+        <a href="/meetings/minutes/" class="qa-card">
+          <div class="qa-icon" aria-hidden="true">📄</div>
+          <div class="qa-label"><span lang="cy">Cofnodion</span><span lang="en">Minutes</span></div>
+          <div class="qa-desc">
+            <span lang="cy">Cofnodion cyfarfodydd diweddaraf</span>
+            <span lang="en">Latest meeting minutes</span>
+          </div>
+        </a>
+        <a href="/meetings/agendas/" class="qa-card">
+          <div class="qa-icon" aria-hidden="true">📋</div>
+          <div class="qa-label"><span lang="cy">Agendâu</span><span lang="en">Agendas</span></div>
+          <div class="qa-desc">
+            <span lang="cy">Agendâu cyfarfodydd sydd i ddod</span>
+            <span lang="en">Upcoming meeting agendas</span>
+          </div>
+        </a>
+        <a href="/councillors/" class="qa-card">
+          <div class="qa-icon" aria-hidden="true">👥</div>
+          <div class="qa-label"><span lang="cy">Cynghorwyr</span><span lang="en">Councillors</span></div>
+          <div class="qa-desc">
+            <span lang="cy">Eich cynrychiolwyr etholedig</span>
+            <span lang="en">Your elected representatives</span>
+          </div>
+        </a>
+        <a href="/planning/" class="qa-card">
+          <div class="qa-icon" aria-hidden="true">🏗️</div>
+          <div class="qa-label"><span lang="cy">Cynllunio</span><span lang="en">Planning</span></div>
+          <div class="qa-desc">
+            <span lang="cy">Ceisiadau cynllunio lleol</span>
+            <span lang="en">Local planning applications</span>
+          </div>
+        </a>
+        <a href="/the-council/grants/" class="qa-card">
+          <div class="qa-icon" aria-hidden="true">💰</div>
+          <div class="qa-label"><span lang="cy">Grantiau</span><span lang="en">Grants</span></div>
+          <div class="qa-desc">
+            <span lang="cy">Grantiau a rhoddion cymunedol</span>
+            <span lang="en">Community grants &amp; donations</span>
+          </div>
+        </a>
+        <a href="/contact/" class="qa-card">
+          <div class="qa-icon" aria-hidden="true">✉️</div>
+          <div class="qa-label"><span lang="cy">Cysylltu</span><span lang="en">Contact</span></div>
+          <div class="qa-desc">
+            <span lang="cy">Cysylltwch â'r clerc</span>
+            <span lang="en">Get in touch with the clerk</span>
+          </div>
+        </a>
+        <a href="/documents/" class="qa-card">
+          <div class="qa-icon" aria-hidden="true">📁</div>
+          <div class="qa-label"><span lang="cy">Dogfennau</span><span lang="en">Documents</span></div>
+          <div class="qa-desc">
+            <span lang="cy">Polisïau a rheoliadau'r cyngor</span>
+            <span lang="en">Council policies &amp; regulations</span>
+          </div>
+        </a>
+        <a href="/llansannan/" class="qa-card">
+          <div class="qa-icon" aria-hidden="true">🏘️</div>
+          <div class="qa-label">Llansannan</div>
+          <div class="qa-desc">
+            <span lang="cy">Gwybodaeth am y pentref</span>
+            <span lang="en">Information about the village</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Latest news -->
+  {latestNews.length > 0 && (
+    <div class="site-wrap">
+      <div class="content">
+        <h2 class="sh">
+          <span lang="cy">Newyddion Diweddaraf</span>
+          <span lang="en">Latest News</span>
+        </h2>
+        <hr class="sh-rule">
+        <div class="news-grid">
+          {latestNews.map(item => (
+            <article class="news-card">
+              <time class="news-date" datetime={item.date}>{item.date}</time>
+              <h3>
+                <span lang="cy">{item.title_cy}</span>
+                <span lang="en">{item.title_en}</span>
+              </h3>
+              <p lang="cy">{item.body_cy}</p>
+              <p lang="en">{item.body_en}</p>
+            </article>
+          ))}
+        </div>
+        <p style="margin-top:1rem">
+          <a href="/news/">
+            <span lang="cy">Gweld yr holl newyddion →</span>
+            <span lang="en">View all news →</span>
+          </a>
+        </p>
+      </div>
+    </div>
+  )}
+
+</Layout>

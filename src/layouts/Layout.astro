@@ -1,0 +1,116 @@
+---
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+import config from '../data/config.json';
+
+interface Props {
+  title_cy: string;
+  title_en: string;
+  description_cy?: string;
+  description_en?: string;
+  canonical?: string;
+  ogImage?: string;
+  pageClass?: string;
+}
+
+const {
+  title_cy,
+  title_en,
+  description_cy = config.site.name_cy,
+  description_en = config.site.name_en,
+  canonical = Astro.url.href,
+  ogImage = '/assets/img/village-aerial.jpg',
+  pageClass = ''
+} = Astro.props;
+
+const siteUrl = config.site.url;
+---
+<!DOCTYPE html>
+<html lang="cy-GB" data-lang="cy">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><span class="cy-title">{title_cy}</span><span class="en-title">{title_en}</span> — {config.site.name_cy}</title>
+  <meta name="description" content={description_cy}>
+  <link rel="canonical" href={canonical}>
+  <link rel="alternate" hreflang="cy" href={canonical}>
+  <link rel="alternate" hreflang="en" href={canonical}>
+  <link rel="alternate" hreflang="x-default" href={canonical}>
+  <link rel="icon" href="/assets/img/favicon.png" type="image/png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content={canonical}>
+  <meta property="og:title" content={`${title_cy} | ${title_en} — ${config.site.name_cy}`}>
+  <meta property="og:description" content={description_en}>
+  <meta property="og:image" content={`${siteUrl}${ogImage}`}>
+  <meta property="og:locale" content="cy_GB">
+  <meta property="og:locale:alternate" content="en_GB">
+
+  <!-- Stylesheets -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600&display=swap">
+  <link rel="stylesheet" href="/assets/css/style.css">
+
+  <!-- Pagefind search UI -->
+  <link rel="stylesheet" href="/pagefind/pagefind-ui.css">
+</head>
+<body class={pageClass}>
+
+  <!-- Skip to content (WCAG 2.2 requirement) -->
+  <a href="#main-content" class="skip-link" lang="cy">Neidio i'r prif gynnwys</a>
+  <a href="#main-content" class="skip-link" lang="en">Skip to main content</a>
+
+  <!-- Language toggle bar -->
+  <div class="lang-bar" role="navigation" aria-label="Language selection">
+    <button class="lang-toggle" onclick="toggleLang()" aria-label="Switch language / Newid iaith">
+      <span lang="cy">English</span>
+      <span lang="en">Cymraeg</span>
+    </button>
+  </div>
+
+  <Navigation />
+
+  <main id="main-content" tabindex="-1">
+    <slot />
+  </main>
+
+  <Footer />
+
+  <script src="/assets/js/main.js"></script>
+  <script src="/pagefind/pagefind-ui.js" type="module" is:inline></script>
+</body>
+</html>
+
+<style is:global>
+  /* Bilingual show/hide */
+  html[data-lang="en"] [lang="cy"] { display: none !important; }
+  html:not([data-lang="en"]) [lang="en"] { display: none !important; }
+
+  /* Skip link */
+  .skip-link {
+    position: absolute;
+    top: -100px;
+    left: 1rem;
+    background: var(--primary);
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 0 0 4px 4px;
+    font-weight: 600;
+    z-index: 9999;
+    transition: top 0.2s;
+    text-decoration: none;
+  }
+  .skip-link:focus {
+    top: 0;
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  /* Focus visible — WCAG 2.2 */
+  :focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+  }
+</style>
